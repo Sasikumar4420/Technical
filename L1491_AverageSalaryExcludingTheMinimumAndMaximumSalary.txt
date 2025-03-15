@@ -1,0 +1,41 @@
+class Solution {
+    public double average(int[] salary) {
+        selectionsort(salary);
+        return averageSalary(salary);
+
+    }
+
+    void selectionsort(int[] salary) {
+        for (int i = 0; i < salary.length; i++) {
+            int last = salary.length - i - 1;
+            int maxIndex = getmax(salary, 0, last);
+
+            swap(salary, maxIndex, last);
+        }
+    }
+
+    int getmax(int[] salary, int start, int end) {
+        int max = start;
+        for (int i = start; i <= end; i++) {
+            if (salary[max] < salary[i]) {
+                max = i;
+            }
+        }
+        return max;
+    }
+
+    void swap(int[] salary, int maxIndex, int last) {
+        int temp = salary[maxIndex];
+        salary[maxIndex] = salary[last];
+        salary[last] = temp;
+
+    }
+
+    double averageSalary(int[] salary) {
+        double average = 0;
+        for (int i = 1; i < salary.length - 1; i++) {
+            average += salary[i];
+        }
+        return average / (salary.length - 2);
+    }
+}

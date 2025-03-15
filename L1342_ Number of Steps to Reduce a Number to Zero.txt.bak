@@ -1,0 +1,19 @@
+class Solution {
+    public int numberOfSteps(int num) {
+        //using recursion
+        return(countnum(num,0));
+    }
+     int countnum(int n,int c) {
+        if(n==0){
+            return 0;
+        }
+		else if(n==1) {
+			return c+1;
+		}
+		else if(n%2==0) {
+			return countnum(n/2,c+1);
+		}
+		return countnum(n-1,c+1);
+		
+	}
+}
